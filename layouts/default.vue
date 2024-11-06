@@ -1,5 +1,7 @@
 <template>
-    <div>
+    <v-container>
         <slot />
-    </div>
+    </v-container>
 </template>
+<script setup lang="ts">
+</script>

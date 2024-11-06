@@ -10,9 +10,30 @@
     "postinstall": "nuxt prepare"
   },
   "dependencies": {
+    "@mdi/font": "^7.4.47",
+    "@tiptap/core": "^2.9.1",
+    "@tiptap/extension-bold": "^2.9.1",
+    "@tiptap/extension-document": "^2.9.1",
+    "@tiptap/extension-hard-break": "^2.9.1",
+    "@tiptap/extension-history": "^2.9.1",
+    "@tiptap/extension-italic": "^2.9.1",
+    "@tiptap/extension-paragraph": "^2.9.1",
+    "@tiptap/extension-strike": "^2.9.1",
+    "@tiptap/extension-subscript": "^2.9.1",
+    "@tiptap/extension-superscript": "^2.9.1",
+    "@tiptap/extension-text": "^2.9.1",
+    "@tiptap/extension-underline": "^2.9.1",
+    "@tiptap/pm": "^2.9.1",
+    "@tiptap/vue-3": "^2.9.1",
     "nuxt": "^3.14.0",
+    "sass": "^1.80.6",
     "vue": "latest",
-    "vue-router": "latest"
+    "vue-router": "latest",
+    "vuetify-nuxt-module": "^0.18.3"
   },
-  "packageManager": "yarn@1.22.19+sha1.4ba7fc5c6e704fce2066ecbfb0b0d8976fe62447"
+  "packageManager": "yarn@1.22.19+sha1.4ba7fc5c6e704fce2066ecbfb0b0d8976fe62447",
+  "devDependencies": {
+    "vite-plugin-vuetify": "^2.0.4",
+    "vuetify": "^3.7.3"
+  }
 }
