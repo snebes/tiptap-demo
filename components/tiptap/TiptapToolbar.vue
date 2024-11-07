@@ -41,13 +41,30 @@
                 </v-card>
             </v-dialog>
         </v-btn>
+
+        <div class="toolbar-divider"/>
+
+        <tiptap-toolbar-button
+            @click="editor.chain().focus().undo().run()"
+            :disabled="!editor.can().undo()"
+            icon="mdi-undo"
+            tooltip="Undo"
+        />
+        <tiptap-toolbar-button
+            @click="editor.chain().focus().redo().run()"
+            :disabled="!editor.can().redo()"
+            icon="mdi-redo"
+            tooltip="Redo"
+        />
+        <view-source-dialog :editor="editor"/>
     </div>
 </template>
 
 <script setup lang="ts">
 import { Editor } from '@tiptap/vue-3';
 import ImageEditForm from '~/components/tiptap/schema/figure-elements/ImageEditForm.vue';
-import TiptapToolbarButton from './TiptapToolbarButton.vue';
+import TiptapToolbarButton from './toolbar/TiptapToolbarButton.vue';
+import ViewSourceDialog from '~/components/tiptap/toolbar/ViewSourceDialog.vue';
 
 const props = defineProps({
     editor: {
@@ -58,11 +75,6 @@ const props = defineProps({
 </script>
 
 <style lang="scss">
-.toolbar-btn {
-    height: 1.75rem !important;
-    min-width: 1.75rem !important;
-    padding: 0 !important;
-}
 .toolbar-divider {
     display: inline-flex;
     align-items: center;

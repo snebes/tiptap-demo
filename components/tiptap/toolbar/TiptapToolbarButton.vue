@@ -9,7 +9,8 @@
 const props = defineProps({
     click: {
         type: Function,
-        default: () => {},
+        default: () => {
+        },
     },
     active: {
         type: Boolean,
@@ -23,7 +24,7 @@ const props = defineProps({
         type: String,
         default: '',
     },
-})
+});
 </script>
 
 <template>
@@ -36,5 +37,18 @@ const props = defineProps({
     >
         <v-tooltip v-if="tooltip.length > 0" activator="parent" location="top">{{ props.tooltip }}</v-tooltip>
         <v-icon v-if="icon.length > 0" size="large">{{ props.icon }}</v-icon>
+        <slot name="default" />
+        <slot name="dialog" />
     </v-btn>
 </template>
+
+<style lang="scss">
+.toolbar-btn {
+    height: 1.75rem !important;
+    min-width: 1.75rem !important;
+    padding: 0 !important;
+    text-transform: none;
+    font-weight: normal;
+    font-kerning: auto;
+}
+</style>

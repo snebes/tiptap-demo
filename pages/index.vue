@@ -22,8 +22,14 @@
 import { Editor } from '@tiptap/vue-3';
 
 const editor = ref<Editor>();
-const focusedEditor = ref<Editor|null>(null);
-const content = ref('<p>content</p>');
+const focusedEditor = ref<Editor | null>(null);
+const content = ref(`
+<p><emphasis type="double-underline">double-underline</emphasis></p>
+<p><emphasis type="monospace">monospace</emphasis></p>
+<p><emphasis type="overline">overline</emphasis></p>
+<p><emphasis type="sans-serif">sans-serif</emphasis></p>
+<p><emphasis type="roman">roman</emphasis></p>
+`);
 
 watch(editor, (newValue) => console.log(newValue));
 </script>
@@ -32,8 +38,10 @@ watch(editor, (newValue) => console.log(newValue));
 .editor {
     box-shadow: 0 0 0 1px #00000008, 0 2px 4px #0000000d, 0 12px 24px #0000000d;
 }
+
 .editor-focus:has(.ProseMirror-focused) {
     outline: 1px solid blueviolet;
+
     .ProseMirror-focused {
         outline: none;
     }

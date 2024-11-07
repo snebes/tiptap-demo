@@ -67,6 +67,6 @@ watch(
 
 <template>
     <div v-if="editor">
-        <editor-content :editor="editor"></editor-content>
+        <editor-content :editor="editor" class="xml2-css"></editor-content>
     </div>
 </template>
