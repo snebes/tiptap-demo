@@ -2,37 +2,30 @@
     <div>
         <div class="py-5 text-center">
             <h1 class="font-weight-bold mb-2">Tiptap Demo</h1>
-            <h3 class="font-weight-thin">A minimal Tiptap editor with a focus on simplicity and extensibility.</h3>
+            <h3 class="font-weight-thin">A xml2 Tiptap editor with a focus on simplicity and extensibility.</h3>
         </div>
 
-        <div class="border rounded-lg editor editor-focus" v-if="editor">
-            <tiptap-toolbar :editor="editor" />
-            <editor-content :editor="editor" class="pa-3" />
-            <div class="border-t pa-3 bg-grey-lighten-5 rounded-b-lg" v-text="editor.getHTML()"></div>
+        <div class="border rounded-lg editor editor-focus">
+            <tiptap-toolbar v-if="editor" :editor="editor" />
+            <tiptap-editor
+                v-model="content"
+                @editor:instance="(instance) => editor = instance"
+                @editor:focus="(instance) => focusedEditor = instance"
+                class="pa-3"
+            />
+            <div class="border-t pa-3 bg-grey-lighten-5 rounded-b-lg" v-text="editor?.getHTML()"></div>
         </div>
     </div>
 </template>
 
 <script setup lang="ts">
-import TiptapToolbar from '~/components/TiptapToolbar.vue';
-import { Editor, EditorContent } from '@tiptap/vue-3';
-import { XmlSchema } from '~/components/tiptap/schema';
+import { Editor } from '@tiptap/vue-3';
 
 const editor = ref<Editor>();
+const focusedEditor = ref<Editor|null>(null);
+const content = ref('<p>content</p>');
 
-onMounted(() => {
-    editor.value = new Editor({
-        content: '<p>test</p>',
-        extensions: [
-            XmlSchema,
-        ],
-    });
-});
-onBeforeUnmount(() => {
-    if (editor.value) {
-        editor.value.destroy();
-    }
-});
+watch(editor, (newValue) => console.log(newValue));
 </script>
 
 <style lang="scss">

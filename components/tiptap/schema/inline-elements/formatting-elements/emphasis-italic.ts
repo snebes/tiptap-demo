@@ -13,7 +13,7 @@ export const EmphasisItalic = Italic.extend({
     addAttributes() {
         return {
             type: {
-                default: 'bold',
+                default: 'italic',
             },
         };
     },

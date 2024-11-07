@@ -1,16 +1,24 @@
+<!--
+  - (c) International Code Council
+  -
+  - For the full copyright and license information, please view the LICENSE
+  - file that was distributed with this source code.
+  -->
+
 <template>
     <div class="border-b px-2 py-1 toolbar">
-        <v-btn
+        <tiptap-toolbar-button
             @click="editor.chain().focus().toggleBold().run()"
             :active="editor.isActive('bold')"
-            variant="text" rounded="0" class="toolbar-btn">
-            <v-tooltip text="Bold" activator="parent" location="top" />
-            <v-icon v-bind="props" size="large">mdi-format-bold</v-icon>
-        </v-btn>
-        <v-btn
-            variant="text" rounded="0" class="toolbar-btn">
-            <v-icon size="large">mdi-format-italic</v-icon>
-        </v-btn>
+            icon="mdi-format-bold"
+            tooltip="Bold"
+        />
+        <tiptap-toolbar-button
+            @click="editor.chain().focus().toggleItalic().run()"
+            :active="editor.isActive('italic')"
+            icon="mdi-format-italic"
+            tooltip="Italic"
+        />
         <div class="toolbar-divider"/>
         <v-btn
             variant="text" rounded="0" class="toolbar-btn">
@@ -26,6 +34,7 @@
                     <v-divider class="mb-3"></v-divider>
 
                     <image-edit-form
+                        v-if="editor"
                         :editor="editor"
                         :close="() => isActive.value = false"
                     />
@@ -36,15 +45,16 @@
 </template>
 
 <script setup lang="ts">
-import type { Editor } from '@tiptap/vue-3';
+import { Editor } from '@tiptap/vue-3';
 import ImageEditForm from '~/components/tiptap/schema/figure-elements/ImageEditForm.vue';
+import TiptapToolbarButton from './TiptapToolbarButton.vue';
 
 const props = defineProps({
     editor: {
-        default: null,
-        type: Object as PropType<Editor>,
+        type: Editor,
+        required: true,
     }
-})
+});
 </script>
 
 <style lang="scss">

@@ -7,12 +7,16 @@
 
 import { Extension } from '@tiptap/core';
 import { FormattingElements } from './formatting-elements';
+import { LinkingElements } from './linking-elements';
+import { TrackChangesElements } from './track-change-elements';
 
 export const InlineElements = Extension.create({
     name: 'xml2-inline-elements',
     addExtensions() {
         return [
             FormattingElements,
+            LinkingElements,
+            TrackChangesElements,
         ];
     },
 });

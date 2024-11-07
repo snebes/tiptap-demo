@@ -18,25 +18,32 @@ const handleClick = () => {
 }
 
 const handleFile = async (event) => {
-    const files = event.target.files;
-    if (files?.length !== 1) {
+    const file = event.target.files[0];
+    if (!file) {
         return;
     }
 
-    let dataUri = '';
-    const fileArray = Array.from(files);
-
-    for (const file of fileArray) {
-        console.log(file);
+    const reader = new FileReader();
+    reader.onloadend = () => {
+        const dataUri = reader.result;
+        props.editor?.chain().focus().setMediaObject({
+            images: [{ src: dataUri, alt: '' }],
+            caption: '',
+        }).run();
     }
 
+    reader.readAsDataURL(file);
+
+    if (props.close) {
+        props.close();
+    }
 };
 </script>
 
 <template>
     <v-container fluid>
         <v-form @submit.prevent="">
-            <v-btn @click="handleClick">
+            <v-btn block variant="tonal" @click="handleClick">
                 Upload from your computer
             </v-btn>
             <input

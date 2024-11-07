@@ -1,4 +1,6 @@
 import { Node } from '@tiptap/core';
+import { type CommandProps } from '@tiptap/vue-3';
+
 
 export interface MediaObjectOptions {
     inline: boolean;
@@ -7,10 +9,7 @@ export interface MediaObjectOptions {
 declare module '@tiptap/core' {
     interface Commands<ReturnType> {
         mediaObject: {
-            setMediaObject: (options: {
-                images: { src: string, alt?: string }[],
-                caption?: string
-            }) => ReturnType,
+            setMediaObject: (options: any) => ReturnType,
         }
     }
 }
@@ -185,20 +184,13 @@ export const MediaObject = Node.create<MediaObjectOptions>({
 
     addCommands() {
         return {
-            setMediaObject: ({ images = [], caption }) => ({ chain }) => {
-                return chain()
-                    .insertContent({
-                        type: this.name,
-                        attrs: { images },
-                        content: caption ? [{ type: 'text', text: caption }] : [],
-                    })
-                    .command(({ tr, commands }) => {
-                        const { doc, selection } = tr;
-                        const position = doc.resolve(selection.to - 2).end();
-
-                        return commands.setTextSelection(position);
-                    })
-                    .run();
+            setMediaObject: (
+                options: { images: { src: string, alt?: string }[], caption?: string }
+            ) => ({ commands, editor }: CommandProps) => {
+                return commands.insertContentAt(editor.state.selection.anchor, {
+                    type: this.name,
+                    attrs: options,
+                });
             }
         }
     }

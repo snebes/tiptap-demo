@@ -4,6 +4,7 @@ import { Text } from '@tiptap/extension-text';
 import { History } from '@tiptap/extension-history';
 import { Paragraph } from '@tiptap/extension-paragraph';
 import { InlineElements } from './inline-elements';
+import { MediaObject } from '~/components/tiptap/schema/figure-elements/media-object';
 
 export const XmlSchema = Extension.create({
     name: 'xml2-schema',
@@ -15,6 +16,8 @@ export const XmlSchema = Extension.create({
             Paragraph,
 
             InlineElements,
+
+            MediaObject,
         ];
     },
 });
