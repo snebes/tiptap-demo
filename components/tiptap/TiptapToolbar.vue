@@ -25,6 +25,30 @@
         <div class="toolbar-divider" />
 
         <tiptap-toolbar-button
+            @click="editor.chain().focus().toggleCommentary().run()"
+            :active="editor.isActive('commentary')"
+            icon="mdi-comment-outline"
+            tooltip="Toggle Commentary"
+        />
+        <tiptap-toolbar-button
+            @click="editor.chain().focus().toggleException().run()"
+            :active="editor.isActive('exception')"
+            icon="mdi-alert-box-outline"
+            tooltip="Toggle Exception"
+        />
+
+        <div class="toolbar-divider" />
+
+        <tiptap-toolbar-button
+            @click="editor.chain().focus().toggleUnorderedList().run()"
+            :active="editor.isActive('unorderedList')"
+            icon="mdi-format-list-bulleted"
+            tooltip="Toggle Unordered List"
+        />
+
+        <div class="toolbar-divider" />
+
+        <tiptap-toolbar-button
             @click="editor.chain().focus().undo().run()"
             :disabled="!editor.can().undo()"
             icon="mdi-undo"

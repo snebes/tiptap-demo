@@ -11,17 +11,19 @@ declare module '@tiptap/core' {
     interface Commands<ReturnType> {
         commentary: {
             setCommentary: () => ReturnType;
+            toggleCommentary: () => ReturnType;
+            unsetCommentary: () => ReturnType;
         }
     }
 }
 
-export const Commentary = Node.create<{}>({
+export const Commentary = Node.create({
     name: 'commentary',
     group: 'block paraElements',
     content: 'block+',
 
     parseHTML() {
-        return [{tag: 'commentary'}];
+        return [{ tag: 'commentary' }];
     },
 
     renderHTML() {
@@ -30,7 +32,9 @@ export const Commentary = Node.create<{}>({
 
     addCommands() {
         return {
-            setCommentary: () => ({ commands }) => commands.setNode(this.name),
+            setCommentary: () => ({ commands }) => commands.wrapIn(this.name),
+            toggleCommentary: () => ({ commands }) => commands.toggleWrap(this.name),
+            unsetCommentary: () => ({ commands }) => commands.lift(this.name),
         }
     }
 });

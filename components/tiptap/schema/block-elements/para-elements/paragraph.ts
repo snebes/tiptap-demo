@@ -34,9 +34,8 @@ export const Paragraph = BaseParagraph.extend({
                 renderHTML: attributes => {
                     if (attributes.align && VALID_ALIGN_VALUES.includes(attributes.align as string)) {
                         return { align: attributes.align };
-                    } else {
-                        return {};
                     }
+                    return {};
                 },
                 keepOnSplit: true,
             }

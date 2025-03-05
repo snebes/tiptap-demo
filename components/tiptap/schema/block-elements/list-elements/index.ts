@@ -6,11 +6,13 @@
  */
 
 import { Extension } from '@tiptap/core';
+import { UnorderedList } from './unordered-list';
 
 export const ListElements = Extension.create({
     name: 'xml2-list-elements',
     addExtensions() {
         return [
+            UnorderedList,
         ];
     }
 });

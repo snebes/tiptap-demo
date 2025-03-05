@@ -11,17 +11,19 @@ declare module '@tiptap/core' {
     interface Commands<ReturnType> {
         exception: {
             setException: () => ReturnType;
+            toggleException: () => ReturnType;
+            unsetException: () => ReturnType;
         }
     }
 }
 
-export const Exception = Node.create<{}>({
+export const Exception = Node.create({
     name: 'exception',
     group: 'block paraElements',
     content: '(paraElements)+', // @todo  | listElements | tableElements | mathElements
 
     parseHTML() {
-        return [{tag: 'exception'}];
+        return [{ tag: 'exception' }];
     },
 
     renderHTML() {
@@ -30,7 +32,9 @@ export const Exception = Node.create<{}>({
 
     addCommands() {
         return {
-            setException: () => ({ commands }) => commands.setNode(this.name),
+            setException: () => ({ commands }) => commands.wrapIn(this.name),
+            toggleException: () => ({ commands }) => commands.toggleWrap(this.name),
+            unsetException: () => ({ commands }) => commands.lift(this.name),
         }
     }
 });
