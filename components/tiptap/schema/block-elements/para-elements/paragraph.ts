@@ -7,14 +7,14 @@
 
 import { Paragraph as BaseParagraph } from '@tiptap/extension-paragraph';
 
-declare module '@tiptap/core' {
-    interface Commands<ReturnType> {
-        exception: {
-            setException: () => ReturnType;
-        }
-    }
-}
-
 export const Paragraph = BaseParagraph.extend({
     group: 'block paraElements',
+    addOptions() {
+        return {
+            HTMLAttributes: {
+                indent: { type: String },
+                align: { type: String },
+            }
+        }
+    }
 });

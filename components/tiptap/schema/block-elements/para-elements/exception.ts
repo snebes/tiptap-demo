@@ -21,16 +21,16 @@ export const Exception = Node.create<{}>({
     content: '(paraElements)+', // @todo  | listElements | tableElements | mathElements
 
     parseHTML() {
-        return [{tag: 'commentary'}];
+        return [{tag: 'exception'}];
     },
 
     renderHTML() {
-        return ['commentary', 0]
+        return ['exception', 0]
     },
 
     addCommands() {
         return {
-            setCommentary: () => ({ commands }) => commands.setNode(this.name),
+            setException: () => ({ commands }) => commands.setNode(this.name),
         }
     }
 });
