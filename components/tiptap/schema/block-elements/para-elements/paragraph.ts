@@ -7,13 +7,38 @@
 
 import { Paragraph as BaseParagraph } from '@tiptap/extension-paragraph';
 
+const VALID_ALIGN_VALUES = ['left', 'center', 'right', 'justify'];
+
 export const Paragraph = BaseParagraph.extend({
     group: 'block paraElements',
-    addOptions() {
+    addAttributes() {
         return {
-            HTMLAttributes: {
-                indent: { type: String },
-                align: { type: String },
+            indent: {
+                default: null,
+                parseHTML: element => element.getAttribute('indent'),
+                renderHTML: attributes => {
+                    if (attributes.indent && attributes.indent === 'yes') {
+                        return { indent: 'yes' };
+                    } else {
+                        return {};
+                    }
+                },
+                keepOnSplit: true,
+            },
+            align: {
+                default: null,
+                parseHTML: element => {
+                    const align = element.getAttribute('align');
+                    return VALID_ALIGN_VALUES.includes(align as string) ? align : null;
+                },
+                renderHTML: attributes => {
+                    if (attributes.align && VALID_ALIGN_VALUES.includes(attributes.align as string)) {
+                        return { align: attributes.align };
+                    } else {
+                        return {};
+                    }
+                },
+                keepOnSplit: true,
             }
         }
     }

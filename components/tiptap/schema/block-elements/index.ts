@@ -14,6 +14,7 @@ export const BlockElements = Extension.create({
     addExtensions() {
         return [
             ParaElements,
+            ListElements,
         ];
     }
 });
