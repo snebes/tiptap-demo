@@ -19,30 +19,10 @@
             icon="mdi-format-italic"
             tooltip="Italic"
         />
-        <div class="toolbar-divider"/>
-        <v-btn
-            variant="text" rounded="0" class="toolbar-btn">
-            <v-icon size="large">mdi-image</v-icon>
+        <div class="toolbar-divider" />
+        <image-toolbar :editor="editor" />
 
-            <v-dialog activator="parent" v-slot:default="{ isActive }">
-                <v-card>
-                    <v-card-title class="d-flex justify-space-between align-center">
-                        <span>Select Image</span>
-                        <v-btn @click="isActive.value = false" icon="mdi-close" variant="text" rounded="1"/>
-                    </v-card-title>
-
-                    <v-divider class="mb-3"></v-divider>
-
-                    <image-edit-form
-                        v-if="editor"
-                        :editor="editor"
-                        :close="() => isActive.value = false"
-                    />
-                </v-card>
-            </v-dialog>
-        </v-btn>
-
-        <div class="toolbar-divider"/>
+        <div class="toolbar-divider" />
 
         <tiptap-toolbar-button
             @click="editor.chain().focus().undo().run()"
@@ -56,7 +36,7 @@
             icon="mdi-redo"
             tooltip="Redo"
         />
-        <view-source-dialog :editor="editor"/>
+        <view-source-dialog :editor="editor" />
     </div>
 </template>
 
@@ -65,12 +45,13 @@ import { Editor } from '@tiptap/vue-3';
 import ImageEditForm from '~/components/tiptap/schema/figure-elements/ImageEditForm.vue';
 import TiptapToolbarButton from './toolbar/TiptapToolbarButton.vue';
 import ViewSourceDialog from '~/components/tiptap/toolbar/ViewSourceDialog.vue';
+import ImageToolbar from '~/components/tiptap/toolbar/ImageToolbar.vue';
 
 const props = defineProps({
     editor: {
         type: Editor,
         required: true,
-    }
+    },
 });
 </script>
 
@@ -79,7 +60,7 @@ const props = defineProps({
     display: inline-flex;
     align-items: center;
     justify-items: center;
-    border-left: 1px solid rgba(0,0,0,.1);
+    border-left: 1px solid rgba(0, 0, 0, .1);
     height: 1.2rem;
     width: 1px;
     margin: 0 0.3rem;

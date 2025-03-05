@@ -10,6 +10,7 @@ const props = defineProps({
     editor: Object,
     close: Function,
 });
+const emits = defineEmits(['close']);
 
 const fileInputRef = ref(null);
 
@@ -33,6 +34,8 @@ const handleFile = async (event) => {
     }
 
     reader.readAsDataURL(file);
+
+    emits('close');
 
     if (props.close) {
         props.close();

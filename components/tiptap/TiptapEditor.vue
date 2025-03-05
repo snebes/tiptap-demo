@@ -6,60 +6,54 @@
   -->
 
 <script setup lang="ts">
-import { Editor, EditorContent } from '@tiptap/vue-3';
-import { XmlSchema } from '~/components/tiptap/schema';
+import {Editor, EditorContent} from '@tiptap/vue-3';
+import {XmlSchema} from '~/components/tiptap/schema';
+import {shallowRef, type ShallowRef} from 'vue';
 
-const props = defineProps({
-    modelValue: {
-        type: String,
-        default: '',
-    },
-});
+interface EditorProps {
+    modelValue?: string
+}
 
-const editor = ref<Editor>();
-const modelValue = defineModel();
-const emits = defineEmits([
-    'editor:instance',
-    'editor:focus',
-    'update:modelValue',
-]);
+interface EditorEmits {
+    (e: 'update:modelValue', value: string): void
+    (e: 'editor:ready', editor: Editor): void
+    (e: 'editor:focus', editor: Editor): void
+    (e: 'editor:blur', editor: Editor): void
+}
+
+const props = withDefaults(defineProps<EditorProps>(), {
+    modelValue: '',
+})
+
+const emit = defineEmits<EditorEmits>()
+
+const editor: ShallowRef<Editor | undefined> = shallowRef();
 
 onMounted(() => {
     editor.value = new Editor({
-        content: modelValue.value as string,
-        extensions: [
-            XmlSchema,
-        ],
-        onCreate: () => {
-            emits('editor:instance', editor.value);
-            emits('update:modelValue', editor.value?.getHTML());
+        content: props.modelValue,
+        extensions: [XmlSchema],
+        onCreate: ({ editor }) => {
+            emit('update:modelValue', editor.getHTML())
+            emit('editor:ready', editor)
         },
-        onUpdate: () => {
-            if (editor.value) {
-                emits('update:modelValue', editor.value.getHTML());
-            }
-        },
-        onFocus: () => {
-            if (editor.value) {
-                emits('editor:focus', editor.value);
-            }
-        },
+        onUpdate: ({ editor }) => emit('update:modelValue', editor.getHTML()),
+        onFocus: ({ editor }) => emit('editor:focus', editor),
+        onBlur: ({ editor }) => emit('editor:blur', editor),
     });
 });
 
 onBeforeUnmount(() => {
-    if (editor.value) {
-        editor.value.destroy();
-    }
-});
+    editor.value?.destroy()
+})
 
 // Update editor with content change from outside module.
 watch(
     () => props.modelValue,
     (newValue) => {
-        const isSame = editor.value?.getHTML() === newValue;
-        if (!isSame) {
-            editor.value?.commands.setContent(newValue, false);
+        const currentContent = editor.value?.getHTML()
+        if (editor.value && currentContent !== newValue) {
+            editor.value.commands.setContent(newValue ?? '', false)
         }
     }
 )

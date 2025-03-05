@@ -9,9 +9,8 @@
             <tiptap-toolbar v-if="editor" :editor="editor" />
             <tiptap-editor
                 v-model="content"
-                @editor:instance="(instance) => editor = instance"
-                @editor:focus="(instance) => focusedEditor = instance"
                 class="pa-3"
+                @editor:ready="(instance: Editor) => editor = instance"
             />
             <div class="border-t pa-3 bg-grey-lighten-5 rounded-b-lg" v-text="editor?.getHTML()"></div>
         </div>
