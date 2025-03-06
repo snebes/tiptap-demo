@@ -19,53 +19,32 @@
             icon="mdi-format-italic"
             tooltip="Italic"
         />
+        <v-btn variant="text" rounded="0" class="toolbar-dropdown-btn">
+            <v-icon size="large">mdi-menu-down</v-icon>
+            <v-menu activator="parent" class="xml2-css">
+                <v-list density="compact">
+                    <v-list-item v-for="(name, type) in {
+                            'bold-italic': 'Bold-Italic',
+                            'underline': 'Underline',
+                            'double-underline': 'Double Underline',
+                            'small-caps': 'Small Caps',
+                            'monospace': 'Monospace',
+                            'overline': 'Overline',
+                            'sans-serif': 'Sans-Serif',
+                            'roman': 'Roman',
+                    }"
+                        @click="editor.chain().focus().toggleEmphasis({ type: type }).run()"
+                        :active="editor.isActive('emphasis', { type: type })"
+                    >
+                        <div class="xml2-css"><emphasis :type="type">{{ name }}</emphasis></div>
+                    </v-list-item>
+                </v-list>
+            </v-menu>
+        </v-btn>
         <tiptap-toolbar-button
-            @click="editor.chain().focus().toggleEmphasis({ type: 'bold-italic' }).run()"
-            :active="editor.isActive('emphasis', { type: 'bold-italic' })"
-            icon="mdi-format-font"
-            tooltip="Bold-Italic"
-        />
-        <tiptap-toolbar-button
-            @click="editor.chain().focus().toggleEmphasis({ type: 'underline' }).run()"
-            :active="editor.isActive('emphasis', { type: 'underline' })"
-            icon="mdi-format-underline"
-            tooltip="Underline"
-        />
-        <tiptap-toolbar-button
-            @click="editor.chain().focus().toggleEmphasis({ type: 'double-underline' }).run()"
-            :active="editor.isActive('emphasis', { type: 'double-underline' })"
-            icon="mdi-format-underline-wavy"
-            tooltip="Double Underline"
-        />
-        <tiptap-toolbar-button
-            @click="editor.chain().focus().toggleEmphasis({ type: 'small-caps' }).run()"
-            :active="editor.isActive('emphasis', { type: 'small-caps' })"
-            icon="mdi-format-size"
-            tooltip="Small Caps"
-        />
-        <tiptap-toolbar-button
-            @click="editor.chain().focus().toggleEmphasis({ type: 'monospace' }).run()"
-            :active="editor.isActive('emphasis', { type: 'monospace' })"
-            icon="mdi-code-greater-than"
-            tooltip="Monospace"
-        />
-        <tiptap-toolbar-button
-            @click="editor.chain().focus().toggleEmphasis({ type: 'overline' }).run()"
-            :active="editor.isActive('emphasis', { type: 'overline' })"
-            icon="mdi-format-overline"
-            tooltip="Overline"
-        />
-        <tiptap-toolbar-button
-            @click="editor.chain().focus().toggleEmphasis({ type: 'sans-serif' }).run()"
-            :active="editor.isActive('emphasis', { type: 'sans-serif' })"
-            icon="mdi-format-sans-serif"
-            tooltip="Sans-serif"
-        />
-        <tiptap-toolbar-button
-            @click="editor.chain().focus().toggleEmphasis({ type: 'roman' }).run()"
-            :active="editor.isActive('emphasis', { type: 'roman' })"
-            icon="mdi-format-roman"
-            tooltip="roman"
+            @click="editor.chain().focus().unsetAllMarks().run()"
+            icon="mdi-format-clear"
+            tooltip="Remove Formatting"
         />
 
         <div class="toolbar-divider" />
@@ -126,6 +105,7 @@ import ImageEditForm from '~/components/tiptap/schema/figure-elements/ImageEditF
 import TiptapToolbarButton from './toolbar/TiptapToolbarButton.vue';
 import ViewSourceDialog from '~/components/tiptap/toolbar/ViewSourceDialog.vue';
 import ImageToolbar from '~/components/tiptap/toolbar/ImageToolbar.vue';
+import type { EmphasisType } from "~/components/tiptap/schema/inline-elements/formatting-elements/emphasis";
 
 const props = defineProps({
     editor: {

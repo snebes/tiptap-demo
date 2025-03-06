@@ -51,4 +51,12 @@ const props = defineProps({
     font-weight: normal;
     font-kerning: auto;
 }
+.toolbar-dropdown-btn {
+    height: 1.75rem !important;
+    min-width: 1rem !important;
+    padding: 0 !important;
+    text-transform: none;
+    font-weight: normal;
+    font-kerning: auto;
+}
 </style>
