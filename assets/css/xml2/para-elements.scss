@@ -1,0 +1,56 @@
+/*!
+ * (c) International Code Council
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
+commentary {
+    display: block;
+    border-left: 5px solid #ffa201;
+    padding-left: calc(2rem - 5px);
+    position: relative;
+
+    &:before {
+        background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI+PHBhdGggZD0iTTUgM2gxNGEyIDIgMCAwIDEgMiAydjE0YTIgMiAwIDAgMS0yIDJINWEyIDIgMCAwIDEtMi0yVjVhMiAyIDAgMCAxIDItMm02IDRhMiAyIDAgMCAwLTIgMnY2YTIgMiAwIDAgMCAyIDJoMmEyIDIgMCAwIDAgMi0ydi0xaC0ydjFoLTJWOWgydjFoMlY5YTIgMiAwIDAgMC0yLTJoLTJaIi8+PC9zdmc+');
+        background-repeat: no-repeat;
+        background-size: contain;
+        content: '';
+        display: inline-block;
+        width: 1.5rem;
+        height: 1.5rem;
+        left: 0;
+        top: -3px;
+        position: absolute;
+        vertical-align: top;
+    }
+}
+
+p {
+    display: block;
+    margin-bottom: 0.5rem;
+
+    &[indent="yes"] {
+        text-indent: 2rem;
+    }
+
+    &[align="left"] {
+        text-align: left;
+    }
+    &[align="center"] {
+        text-align: center;
+    }
+    &[align="right"] {
+        text-align: right;
+    }
+    &[align="justify"] {
+        text-align: justify;
+    }
+}
+
+exception {
+    display: block;
+    margin-left: 2rem;
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+}

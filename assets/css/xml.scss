@@ -9,6 +9,8 @@
 
 @media screen {
     .xml2-css {
+        @include meta.load-css("xml2/para-elements");
+        @include meta.load-css("xml2/list-elements");
         @include meta.load-css("xml2/formatting-elements");
     }
 }

@@ -12,7 +12,7 @@
                 class="pa-3"
                 @editor:ready="(instance: Editor) => editor = instance"
             />
-            <div class="border-t pa-3 bg-grey-lighten-5 rounded-b-lg" v-text="editor?.getHTML()"></div>
+            <div class="border-t pa-3 bg-grey-lighten-3 rounded-b-lg" v-text="editor?.getHTML()"></div>
         </div>
     </div>
 </template>
@@ -23,11 +23,10 @@ import { Editor } from '@tiptap/vue-3';
 const editor = ref<Editor>();
 const focusedEditor = ref<Editor | null>(null);
 const content = ref(`
-<p><emphasis type="double-underline">double-underline</emphasis></p>
-<p><emphasis type="monospace">monospace</emphasis></p>
-<p><emphasis type="overline">overline</emphasis></p>
-<p><emphasis type="sans-serif">sans-serif</emphasis></p>
-<p><emphasis type="roman">roman</emphasis></p>
+<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+<exception>
+<p><emphasis type="bold">Exception:</emphasis> Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+</exception>
 `);
 
 watch(editor, (newValue) => console.log(newValue));
