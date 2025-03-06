@@ -6,11 +6,71 @@
  */
 
 ol {
-    display: block;
+    display: table;
+    list-style-type: none;
+    margin: 0;
+    margin-block-start: 1rem;
+    margin-block-end: 1rem;
+    padding: 0 0 0 2rem;
+
+    li {
+        display: table-row;
+
+        label {
+            display: table-cell;
+        }
+    }
+
+    &[type="arabic"] {
+        list-style: decimal;
+    }
+    &[type="upper-alpha"] {
+        list-style: upper-alpha;
+    }
+    &[type="lower-alpha"] {
+        list-style: lower-alpha;
+    }
+    &[type="upper-roman"] {
+        list-style: upper-roman;
+    }
+    &[type="lower-roman"] {
+        list-style: lower-roman;
+    }
 }
 
 ul {
     display: block;
+    list-style-type: disc;
+    padding-left: 2rem;
+
+    li {
+        display: list-item;
+    }
+
+    &[type="disc"] {
+        list-style-type: disc;
+    }
+    &[type="square"] {
+        list-style-type: square;
+    }
+    &[type="gray-square"] {
+        list-style-type: "◽ ";
+        // options: ◽ ⬜ □ ▢ ▫ ◻
+    }
+    &[type="circle"] {
+        list-style-type: circle;
+    }
+    &[type="check"] {
+        list-style-type: "✓ ";
+        // options: ✓ ☑ ✅
+    }
+    &[type="hyphen"] {
+        list-style-type: hyphen;
+    }
+    &[type="custom"],
+    &[type="none"] {
+        list-style-type: none;
+    }
 }
 
 where-list {

@@ -7,6 +7,6 @@
 
 import { ListItem } from '@tiptap/extension-list-item';
 
-export const UnorderedListItem = ListItem.extend({
-    name: 'unorderedListItem',
+export const OrderedListItem = ListItem.extend({
+    name: 'orderedListItem',
 });
