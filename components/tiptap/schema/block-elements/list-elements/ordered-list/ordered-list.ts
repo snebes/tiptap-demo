@@ -16,10 +16,27 @@ declare module '@tiptap/core' {
     }
 }
 
+const VALID_TYPE_VALUES = ['custom', 'arabic', 'upper-alpha', 'lower-alpha', 'upper-roman', 'lower-roman'];
+
 export const OrderedList = Node.create({
     name: 'orderedList',
     group: 'block listElements',
     content: 'orderedListItem+',
+
+    addAttributes() {
+        return {
+            type: {
+                default: 'custom',
+                parseHTML: element => element.getAttribute('type'),
+                renderHTML: attributes => {
+                    if (attributes.type && VALID_TYPE_VALUES.includes(attributes.type)) {
+                        return { type: attributes.type };
+                    }
+                    return {};
+                }
+            }
+        }
+    },
 
     addExtensions() {
         return [OrderedListItem];
