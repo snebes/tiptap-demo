@@ -7,6 +7,7 @@
 
 import { Node } from '@tiptap/core';
 import { OrderedListItem } from './ordered-list-item'
+import { OrderedListItemLabel } from './ordered-list-item-label'
 
 declare module '@tiptap/core' {
     interface Commands<ReturnType> {
@@ -39,7 +40,10 @@ export const OrderedList = Node.create({
     },
 
     addExtensions() {
-        return [OrderedListItem];
+        return [
+            OrderedListItem,
+            OrderedListItemLabel,
+        ];
     },
 
     parseHTML() {

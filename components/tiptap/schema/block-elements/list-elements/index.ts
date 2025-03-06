@@ -6,7 +6,7 @@
  */
 
 import { Extension } from '@tiptap/core';
-import { OrderedList } from './ordered-list';
+import { OrderedList } from './ordered-list/ordered-list';
 import { UnorderedList } from './unordered-list';
 
 export * from './unordered-list';

@@ -32,7 +32,7 @@ export const UnorderedList = Node.create({
                     if (attributes.type && VALID_TYPE_VALUES.includes(attributes.type)) {
                         return { type: attributes.type };
                     }
-                    return {};
+                    return { type: 'disc' };
                 }
             }
         }
@@ -47,7 +47,7 @@ export const UnorderedList = Node.create({
     },
 
     renderHTML({ HTMLAttributes }) {
-        return ['ul', HTMLAttributes, 0]
+        return ['ul', HTMLAttributes, 0];
     },
 
     addCommands() {

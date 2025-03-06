@@ -16,7 +16,7 @@ export const XmlSchema = Extension.create({
             History,
 
             BlockElements,
-            // InlineElements,
+            InlineElements,
 
             // MediaObject,
         ];

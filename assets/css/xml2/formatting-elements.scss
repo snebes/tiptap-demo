@@ -5,66 +5,68 @@
  * file that was distributed with this source code.
  */
 
-emphasis[type='bold'] {
-    font-weight: bold;
-}
+emphasis {
+    &[type='bold'] {
+        font-weight: bold;
+    }
 
-emphasis[type='italic'] {
-    font-style: italic;
-}
+    &[type='italic'] {
+        font-style: italic;
+    }
 
-emphasis[type='bold-italic'] {
-    font-weight: bold;
-    font-style: italic;
-}
+    &[type='bold-italic'] {
+        font-weight: bold;
+        font-style: italic;
+    }
 
-emphasis[type='underline'] {
-    text-decoration: underline;
-}
+    &[type='underline'] {
+        text-decoration: underline;
+    }
 
-emphasis[type='double-underline'] {
-    text-decoration-line: underline;
-    text-decoration-style: double;
-}
+    &[type='double-underline'] {
+        text-decoration-line: underline;
+        text-decoration-style: double;
+    }
 
-emphasis[type='small-caps'] {
-    font-variant: small-caps;
-}
+    &[type='small-caps'] {
+        font-variant: small-caps;
+    }
 
-emphasis[type='monospace'] {
-    font-family: monospace;
-}
+    &[type='monospace'] {
+        font-family: monospace;
+    }
 
-emphasis[type='strikethrough'] {
-    text-decoration: line-through;
-}
+    &[type='strikethrough'] {
+        text-decoration: line-through;
+    }
 
-emphasis[type='overline'] {
-    text-decoration: overline;
-}
+    &[type='overline'] {
+        text-decoration: overline;
+    }
 
-emphasis[type='sans-serif'] {
-    font-family: sans-serif;
-}
+    &[type='sans-serif'] {
+        font-family: sans-serif;
+    }
 
-emphasis[type='roman'] {
-    font-family: serif;
-}
+    &[type='roman'] {
+        font-family: serif;
+    }
 
-emphasis[type='other-style'][role='suggest'] {
-    color: #27ae60;
-    text-decoration: underline;
-    font-weight: 700;
-}
+    &[type='other-style'][role='suggest'] {
+        color: #27ae60;
+        text-decoration: underline;
+        font-weight: 700;
+    }
 
-emphasis[type='other-style'][role='editor'] {
-    background-color: #d3d3d3;
-}
+    &[type='other-style'][role='editor'] {
+        background-color: #d3d3d3;
+    }
 
-emphasis[type='other-style'][role='no-list'] {
-    background-color: #f1c40f;
-}
+    &[type='other-style'][role='no-list'] {
+        background-color: #f1c40f;
+    }
 
-emphasis[type='other-style'][role='list-no-mark'] {
-    background-color: #ffbfcd;
+    &[type='other-style'][role='list-no-mark'] {
+        background-color: #ffbfcd;
+    }
 }
