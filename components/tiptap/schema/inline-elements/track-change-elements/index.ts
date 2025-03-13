@@ -6,11 +6,15 @@
  */
 
 import { Extension } from '@tiptap/core';
+import { Errata } from './errata';
+import { Insert } from './insert';
 
 export const TrackChangesElements = Extension.create({
     name: 'xml2-track-changes-elements',
     addExtensions() {
         return [
+            // Errata,
+            Insert,
         ];
     },
 });

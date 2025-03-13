@@ -8,6 +8,16 @@
 <template>
     <div class="border-b px-2 py-1 toolbar">
         <tiptap-toolbar-button
+            @click="editor.chain().focus().toggleInsert({ errata: false, inline: false }).run()"
+            :active="editor.isActive('insert', { errata: false, inline: false })"
+            tooltip="Insert"
+        >Insert</tiptap-toolbar-button>
+        <tiptap-toolbar-button
+            @click="editor.chain().focus().toggleInsert({ errata: true, inline: false }).run()"
+            :active="editor.isActive('insert', { errata: true, inline: false })"
+            tooltip="List Errata"
+        >Errata</tiptap-toolbar-button>
+        <tiptap-toolbar-button
             @click="editor.chain().focus().toggleEmphasis({ type: 'bold' }).run()"
             :active="editor.isActive('emphasis', { type: 'bold' })"
             icon="mdi-format-bold"
